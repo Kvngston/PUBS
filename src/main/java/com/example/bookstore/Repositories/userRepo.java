@@ -1,4 +1,7 @@
 package com.example.bookstore.Repositories;
 
-public interface userRepo extends  {
+import com.example.bookstore.Domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface userRepo extends JpaRepository<User, Long> {
 }
