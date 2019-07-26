@@ -36,6 +36,6 @@ public class RegisterController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(){
 
-        return "homePage";
+        return "index2";
     }
 }
