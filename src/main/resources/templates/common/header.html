@@ -25,10 +25,10 @@
         <div class="page-top"
              style="width: 100%; height: 20px; background-color: #f46b42;"></div>
         <!-- Static navbar -->
-        <nav class="navbar navbar-default navbar-inverse">
+        <nav class="navbar navbar-default" style="background-color: white;">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Paul University's BookStore</a>
+                    <a class="navbar-brand" th:href="@{/}">Paul University's BookStore</a>
                 </div>
                 <div id="navbar">
                     <ul class="nav navbar-nav navbar-left">
@@ -51,7 +51,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">SHOPPING CART</a></li>
-                        <li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
+                        <li><a sec:authorize="isAnonymous()" th:href="@{/myAccount}">Login</a></li>
                         <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">MY ACCOUNT</a></li>
                         <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">LOGOUT</a></li>
                     </ul>

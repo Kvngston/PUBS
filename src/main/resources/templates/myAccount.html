@@ -34,13 +34,15 @@
                         <div class="panel-group">
                             <div class="panel panel-default" style="border: none;">
                                 <div class="panel-body" style="background-color: #ededed; margin-top: 20px; ">
-                                    <div class="alert-info alert" th:if="${emailSent}">An email has been sent to the registered email. Please update your Profile through the link</div>
-                                    <form th:action="@{/newAccount}" method="post">
+                                    <div class="alert-info alert" th:if="${emailSent}">An email has been sent to the registered email
+                                        Please update your Profile through the link
+                                    </div>
+                                    <form th:action="@{/createAccount}" th:object="${user}" method="post">
                                         <div class="form-group">
                                             <label for="newUsername">
                                                 * Username
                                             </label>
-                                            <input required="required" type="text" class="form-control" id="newUsername" name="newUsername"/>
+                                            <input required="required" type="text" th:field="*{userName}" class="form-control" id="newUsername" name="newUsername"/>
                                             <p style="color: #828282;">Enter your Username Here</p>
                                         </div>
 
@@ -48,8 +50,43 @@
                                             <label for="email">
                                                 * Email
                                             </label>
-                                            <input required="required" type="text" class="form-control" id="email" name="email"/>
+                                            <input required="required" type="text" class="form-control" th:field="*{email}" id="email" name="email"/>
                                             <p style="color: #828282;">Enter your valid Email Address</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="firstName">
+                                                * FirstName
+                                            </label>
+                                            <input required="required" type="text" class="form-control" th:field="*{firstName}" id="firstName" name="firstName"/>
+                                            <p style="color: #828282;">Enter your FirstName</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="LastName">
+                                                * LastName
+                                            </label>
+                                            <input required="required" type="text" class="form-control" id="LastName" th:field="*{lastName}" name="LastName"/>
+                                            <p style="color: #828282;">Enter your LastName</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PhoneNumber">
+                                                * PhoneNumber
+                                            </label>
+                                            <input required="required" type="text" class="form-control" th:field="*{phoneNumber}" id="PhoneNumber" name="email"/>
+                                            <p style="color: #828282;">Enter your valid PhoneNumber</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="YourPassword">
+                                                * Password
+                                            </label>
+                                            <input required="required" type="text" class="form-control" th:field="*{password}" id="YourPassword" name="YourPassword"/>
+                                            <p style="color: #828282;">Enter your Password</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cpassword">
+                                                * Confirm Password
+                                            </label>
+                                            <input required="required" type="text" class="form-control" id="cpassword" name="cpassword"/>
+                                            <p style="color: #828282;">Confirm Password</p>
                                         </div>
                                         <button class="btn btn-primary" type="submit">Create a new Account</button>
                                     </form>
@@ -63,12 +100,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default" style="border: none;">
                                 <div class="panel-body" style="background-color: #ededed; margin-top: 20px; ">
-                                    <form>
+                                    <form th:action="@{/login}">
                                         <div class="form-group">
-                                            <label for="newUsername">
+                                            <label for="Username">
                                                 * Username
                                             </label>
-                                            <input required="required" type="text" class="form-control" id="newUsername" name="newUsername"/>
+                                            <input required="required" type="text" class="form-control" id="Username" name="userName"/>
                                             <p style="color: #828282;">Enter your Username Here</p>
                                         </div>
 

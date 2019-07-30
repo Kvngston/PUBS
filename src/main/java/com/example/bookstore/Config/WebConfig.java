@@ -22,6 +22,14 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService);
     }
 
+    private static final String[] PUBLIC_MATCHERS = {
+            "/",
+            "/newAccount",
+            "/forgotPassword",
+            "/myProfile"
+
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -29,7 +37,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http
                 .authorizeRequests()
-                .antMatchers()
+                .antMatchers(PUBLIC_MATCHERS)
                 .authenticated()
                 .anyRequest()
                 .permitAll()
@@ -40,6 +48,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/", true)
                 .and()
                 .logout()
+                .deleteCookies("remember-me")
                 .permitAll();
     }
 
