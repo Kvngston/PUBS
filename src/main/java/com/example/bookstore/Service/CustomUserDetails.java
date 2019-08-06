@@ -2,6 +2,8 @@ package com.example.bookstore.Service;
 
 import com.example.bookstore.Domain.Role;
 import com.example.bookstore.Domain.User;
+import com.example.bookstore.Repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +18,9 @@ import java.util.stream.Collectors;
 public class CustomUserDetails implements UserDetails {
 
     private User user;
+
+    @Autowired
+    private UserRepo userRepo;
 
     public User getUser() {
         return user;

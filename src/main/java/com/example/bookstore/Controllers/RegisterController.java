@@ -4,12 +4,14 @@ import com.example.bookstore.Domain.User;
 import com.example.bookstore.Repositories.RoleRepo;
 import com.example.bookstore.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class RegisterController {
@@ -20,6 +22,9 @@ public class RegisterController {
     @Autowired
     private RoleRepo roleRepo;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegisterPage(Model model){
 
@@ -27,17 +32,6 @@ public class RegisterController {
         model.addAttribute("user", user);
 
         return "register";
-    }
-
-    @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute("user") @Valid User user,
-                               BindingResult result,
-                               Model model){
-
-
-
-
-        return "homepage";
     }
 
     @RequestMapping(value = "/createAccount", method = RequestMethod.POST)
@@ -48,7 +42,8 @@ public class RegisterController {
 
         if(!bindingResult.hasErrors()){
             if (user.getPassword().equals(cpassword)){
-                user.setRole(roleRepo.getOne(1));
+                user.setRole(roleRepo.findByRole("User"));
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
                 userRepo.save(user);
             }
         }
@@ -56,6 +51,8 @@ public class RegisterController {
 
         return "redirect:/";
     }
+
+
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(Model model){

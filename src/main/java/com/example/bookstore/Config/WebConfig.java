@@ -22,11 +22,22 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService);
     }
 
-    private static final String[] PUBLIC_MATCHERS = {
+    private static final String[] USER_MATCHERS = {
             "/",
             "/newAccount",
             "/forgotPassword",
             "/myProfile"
+
+    };
+
+    private static final String[] ADMIN_MATCHERS = {
+            "/",
+            "/newAccount",
+            "/forgotPassword",
+            "/myProfile",
+            "/addBook",
+            "/deleteBook",
+            "/editBook"
 
     };
 
@@ -37,7 +48,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http
                 .authorizeRequests()
-                .antMatchers(PUBLIC_MATCHERS)
+                .antMatchers(USER_MATCHERS)
                 .authenticated()
                 .anyRequest()
                 .permitAll()
@@ -45,7 +56,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/myProfile", true)
                 .and()
                 .logout()
                 .deleteCookies("remember-me")

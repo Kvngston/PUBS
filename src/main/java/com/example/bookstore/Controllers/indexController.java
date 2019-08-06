@@ -26,11 +26,8 @@ public class indexController {
     @RequestMapping(value = "/myProfile", method = RequestMethod.GET)
     public String getProfilePage(Principal principal, Model model){
 
-//        User user = userRepo.findByUserName(principal.getName());
-
-//        if(user != null)
-//            model.addAttribute("user", user);
-
+        User user = userRepo.findByUserName(principal.getName());
+        model.addAttribute("user", user);
 
         return "myProfile";
     }

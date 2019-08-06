@@ -100,12 +100,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default" style="border: none;">
                                 <div class="panel-body" style="background-color: #ededed; margin-top: 20px; ">
-                                    <form th:action="@{/login}">
+                                    <form th:action="@{/login}" method="post" action="/login">
                                         <div class="form-group">
                                             <label for="Username">
                                                 * Username
                                             </label>
-                                            <input required="required" type="text" class="form-control" id="Username" name="userName"/>
+                                            <input required="required" type="text" class="form-control" id="Username" name="username"/>
                                             <p style="color: #828282;">Enter your Username Here</p>
                                         </div>
 
